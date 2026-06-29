@@ -7,19 +7,20 @@ use App\Http\Resources\BlueprintResource;
 use App\Models\Blueprint;
 use App\Http\Requests\StoreBlueprintRequest;
 
+
 class BlueprintController extends Controller
 {
-    public function index()
-    {
-        $blueprints = auth()->user()
-            ->blueprints()
-            ->latest()
-            ->get();
+  public function index()
+{
+    $blueprints = auth()->user()
+        ->blueprints()
+        ->latest()
+        ->get();
 
-        return response()->json($blueprints);
-    }
+    return BlueprintResource::collection($blueprints);
+}
 
-   public function store(StoreBlueprintRequest $request)
+ public function store(StoreBlueprintRequest $request)
 {
     $blueprint = auth()->user()
         ->blueprints()
@@ -32,7 +33,7 @@ class BlueprintController extends Controller
 
     public function show(Blueprint $blueprint)
     {
-        return response()->json($blueprint);
+        return new BlueprintResource($blueprint);
     }
 
 

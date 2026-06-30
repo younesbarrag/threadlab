@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\RawContent;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -37,4 +38,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Blueprint::class);
     }
+
+    public function rawContents(): HasMany
+{
+    return $this->hasMany(RawContent::class);
+}
 }

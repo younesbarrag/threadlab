@@ -37,7 +37,4 @@ class BlueprintController extends Controller
     }
 
 
-
-
- 
 }
